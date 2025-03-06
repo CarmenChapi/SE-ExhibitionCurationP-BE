@@ -2,15 +2,16 @@ const app = require("../app.js");
 const request = require("supertest");
 const db = require("../db/connection.js");
 const seed = require("../db/seeds/seed");
+const data = require("../db/data/test-data/index.js");
 
-beforeAll(() => seed());
+beforeAll(() => seed(data));
 afterAll(() => db.end());
 
 describe("Project BE-Curator-BE Test Suite", () => {
   
 
   describe("Test Collections", () => {
-    test.only("201: POST /api/collections  add a new collection to the database", () => {
+    test("201: POST /api/collections  add a new collection to the database", () => {
       return request(app)
         .post("/api/collection")
         .send({
@@ -27,12 +28,12 @@ describe("Project BE-Curator-BE Test Suite", () => {
           );
           expect(data.body.collection).toHaveProperty("title");
           expect(data.body.collection.title).toBe("Carmen Museum");
-          expect(data.body.collection).toHaveProperty("location");
-          expect(data.body.collection.location).toBe("London");
+          expect(data.body.collection).toHaveProperty("user_mail");
+          expect(data.body.collection.user_mail).toBe("mariachaparro58@gmail.com");
         });
     });
 
-    test.only("201: POST /api/collections  add a new collection to the database", () => {
+    test("201: POST /api/collections  add a new collection to the database", () => {
       return request(app)
         .post("/api/collection")
         .send({
@@ -49,12 +50,12 @@ describe("Project BE-Curator-BE Test Suite", () => {
           );
           expect(data.body.collection).toHaveProperty("title");
           expect(data.body.collection.title).toBe("Likes");
-          expect(data.body.collection).toHaveProperty("location");
-          expect(data.body.collection.location).toBe("Bristol");
+          expect(data.body.collection).toHaveProperty("user_mail");
+          expect(data.body.collection.user_mail).toBe("mariachaparro58@gmail.com");
         });
     });
 
-    test("200 get all collections", () => {
+    test.only("200 get all collections", () => {
       return request(app)
         .get("/api/collection")
         .expect(200)
@@ -64,12 +65,11 @@ describe("Project BE-Curator-BE Test Suite", () => {
           data.body.collections.forEach((col) => {
             expect(col).toHaveProperty("user_mail");
             expect(col).toHaveProperty("title");
-            expect(col).toHaveProperty("location");
           });
         });
     });
 
-    test.only("200: Patch /api/collection/:id_collection  update a collection by collection_id", () => {
+    test("200: Patch /api/collection/:id_collection  update a collection by collection_id", () => {
       return request(app)
       .patch("/api/collection/1")
       .send({ title: "my new exhibition",
@@ -86,17 +86,20 @@ describe("Project BE-Curator-BE Test Suite", () => {
   
 
   describe("Test Artworks", () => {
-    test("200 get all artworks", () => {
+    test.only("200 get all artworks", () => {
       return request(app)
         .get("/api/artwork")
         .expect(200)
         .then((data) => {
           console.log(data.body);
-          //   expect(Array.isArray(data.body.topics)).toBe(true);
-          //   expect(data.body.topics.length === 3).toBe(true);
-          //   data.body.topics.forEach((topic) => {
-          //     expect(topic).toHaveProperty("slug");
-          //     expect(topic).toHaveProperty("description");
+             expect(Array.isArray(data.body.artworks)).toBe(true);
+             data.body.artworks.forEach((art) => {
+             expect(art).toHaveProperty("title");
+               expect(art).toHaveProperty("location");
+               expect(art).toHaveProperty("artist");
+               expect(art).toHaveProperty("description");
+               expect(art).toHaveProperty("image_url");
+               expect(art).toHaveProperty("id_collection");
         });
     });
 
@@ -121,4 +124,5 @@ describe("Project BE-Curator-BE Test Suite", () => {
         });
     });
   });
+})
 })
