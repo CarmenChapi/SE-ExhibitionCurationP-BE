@@ -8,7 +8,7 @@ beforeAll(() => seed(data));
 afterAll(() => db.end());
 
 describe("Project BE-Curator-BE Test Suite", () => {
-  describe.only("Test Collections", () => {
+  describe("Test Collections", () => {
     test("200: GET all collections", () => {
       return request(app)
         .get("/api/collection")
@@ -229,4 +229,22 @@ describe("Project BE-Curator-BE Test Suite", () => {
         });
     });
   });
+  describe.only("Test endpoints", () => {
+    test("200: GET /api all endpoints and descriptions", () => {
+      return request(app)
+        .get("/api")
+        .expect(200)
+        .then((data) => {
+          console.log(data.body)
+          expect(typeof data.body.endpoints).toBe("object");
+          expect(Object.keys(data.body.endpoints).length).toBe(7);
+          expect(Object.values(data.body.endpoints).length).toBe(7);
+        });
+    });
+  })
+
+
+
+
+
 });

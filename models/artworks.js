@@ -5,7 +5,6 @@ const { querySelectArtworks, queryInsertArtwork } = require("../db/queries.js")
 
 
 const selectAllArtworks = () => {
-  console.log("chilling models ", querySelectArtworks)
     return db.query(querySelectArtworks)
       .then(artworks => {
 
@@ -23,7 +22,7 @@ const selectAllArtworks = () => {
 const insertArtwork = (req) =>{
     const {username, body} = req.body;
     const {article_id} = req.params;
-    console.log(queryInsertArtwork, username, body, article_id)
+    //console.log(queryInsertArtwork, username, body, article_id)
     return db
     .query(
         queryInsertArtwork , [username, body, 0, parseInt(article_id)]
