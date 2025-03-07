@@ -1,0 +1,59 @@
+
+{
+    "GET /api": {
+      "description": "serves up a json representation of all the available endpoints of the api"
+    },
+    "GET /api/collection": {
+      "description": "serves an array of all exhibition collections",
+      "queries": [],
+      "exampleResponse": {
+        "collections": [ {
+            "id_collection": 1,
+            "user_mail": "mariachaparro@gmail.com",
+            "title": "House",
+            "created_at": "2025-03-07T03:30:46.377Z"
+          },
+          {
+            "id_collection": 2,
+            "user_mail": "lucas@gmail.com",
+            "title": "Heaven",
+            "created_at": "2025-03-07T03:30:46.377Z"
+          }]
+      }
+    },
+
+    "GET /api/collection/id/:id_collection": {
+      "description": "return the collection with id = id_collection",
+      "queries": [],
+      "exampleResponse": {
+      }
+    },
+
+    "GET /api/collection/:user_mail": {
+        "description": "return the collections with user_mail = user_mail",
+        "queries": [],
+        "exampleResponse": {
+        }
+      },
+
+      "POST /api/collection": {
+        "description": "insert a new row in the collection table, return the collection inserted",
+        "queries": [],
+        "exampleResponse": {
+        }
+      },
+
+      "PATCH /api/collection/:id_collection": {
+        "description": "update the row with collection = to id_collection and return the collection updated",
+        "queries": [],
+        "exampleResponse": {
+        }
+      },
+      "DELETE /api/collection/:id_collection": {
+        "description": "delete the row with collection = to id_collection and return the collection deleted",
+        "queries": [],
+        "exampleResponse": {
+        }
+      }
+    
+  }

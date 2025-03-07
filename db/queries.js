@@ -16,14 +16,28 @@ exports.queryInsertArtwork =
 
 exports.queryInsertCollection =
 `INSERT INTO collections (
-user_mail, title, location)
-VALUES ($1, $2, $3)
+user_mail, title)
+VALUES ($1, $2)
 RETURNING *; `;
 
 
 exports.queryUpdateColById =
 `UPDATE collections
-SET title = $1,
-location = $2
-WHERE id_collection = $3
-RETURNING *;`
+SET title = $1
+WHERE id_collection = $2
+RETURNING *;`;
+
+exports.querySelectCollectionsByUser =
+`SELECT *
+FROM collections
+WHERE user_mail = $1;`;
+
+exports.querySelectCollectionsById =
+`SELECT *
+FROM collections
+WHERE id_collection = $1;`;
+
+exports.queryDeleteCollectionId = 
+`DELETE FROM collections
+WHERE id_collection = $1 
+ RETURNING *;`;
