@@ -4,28 +4,15 @@ const app = express();
 app.use(cors());
 
 const { getEndpoints} = require("./controllers/endpoints")
-const { getAllArtworks, getArtworkById, getArtworksByCollectionId, postArtwork, patchArtwork, deleteArtwork} = require("./controllers/artworks")
-const { getAllCollections, getCollectionByUser, getCollectionById, postCollection, patchCollection, deleteCollection} = require("./controllers/collections")
+
+const artworkRoutes = require("./routes/artworks");
+const collectionRoutes = require("./routes/collections");
 
 app.use(express.json());
 
 app.get("/api", getEndpoints);
-
- app.get("/api/artwork", getAllArtworks); 
- app.get("/api/artwork/:id_artwork", getArtworkById);
- app.get("/api/artwork/collection/:id_collection", getArtworksByCollectionId);
-
- app.post("/api/artwork/:id_collection", postArtwork);
- app.patch("/api/artwork/:id_artwork", patchArtwork);
- app.delete("/api/artwork/:id_artwork", deleteArtwork)
-
- app.get("/api/collection", getAllCollections)
- app.get("/api/collection/:user_mail", getCollectionByUser)
- app.get("/api/collection/id/:id_collection", getCollectionById)
-
- app.post("/api/collection", postCollection)
- app.patch("/api/collection/:id_collection", patchCollection)
- app.delete("/api/collection/:id_collection", deleteCollection)
+app.use("/api/artwork", artworkRoutes);
+app.use("/api/collection", collectionRoutes);
 
 
 //SQL Errors
