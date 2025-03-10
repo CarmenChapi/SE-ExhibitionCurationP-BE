@@ -10,7 +10,7 @@ afterAll(() => db.end());
 describe("Project BE-Curator-BE Test Suite", () => {
   describe("Test Collections", () => {
     describe("GET=> return information of collections if the request is correct", () => {
-      test("200: GET all collections", () => {
+      test.only("200: GET all collections", () => {
         return request(app)
           .get("/api/collection")
           .expect(200)
@@ -20,11 +20,12 @@ describe("Project BE-Curator-BE Test Suite", () => {
             data.body.collections.forEach((col) => {
               expect(col).toHaveProperty("user_mail");
               expect(col).toHaveProperty("title");
+              expect(col).toHaveProperty("art_count");
             });
           });
       });
 
-      test("200: GET /api/collection/:user_mail get collections by user mail", () => {
+      test.only("200: GET /api/collection/:user_mail get collections by user mail", () => {
         return request(app)
           .get("/api/collection/mariachaparro@gmail.com")
           .expect(200)
@@ -34,6 +35,7 @@ describe("Project BE-Curator-BE Test Suite", () => {
             data.body.collections.forEach((col) => {
               expect(col).toHaveProperty("user_mail");
               expect(col).toHaveProperty("title");
+              expect(col).toHaveProperty("art_count");
             });
           });
       });
@@ -58,14 +60,15 @@ describe("Project BE-Curator-BE Test Suite", () => {
           });
       });
 
-      test("200: GET /api/collection/id/:id_collection  get a collection by collection_id", () => {
+      test.only("200: GET /api/collection/id/:id_collection  get a collection by collection_id", () => {
         return request(app)
           .get("/api/collection/id/1")
           .expect(200)
           .then((data) => {
-            //console.log(data.body.collection, data.body.collection[0].title);
+            console.log(data.body.collection, data.body.collection[0].title);
             expect(data.body.collection[0].id_collection).toBe(1);
             expect(data.body.collection[0].title).toBe("House");
+            expect(data.body.collection[0].art_count).toBe("2");
           });
       });
 

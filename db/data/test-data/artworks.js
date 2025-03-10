@@ -38,7 +38,23 @@ module.exports = [
         description:"this is a test",
         image_url :"https://images.pexels.com/photos/3991396/pexels-photo-3991396.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" ,
       id_collection : "2"
-    }
+    },
+    {
+      title: 'Mouse',
+      location: "Oviedo",
+      artist: "David Lynch",
+      description:"this is a test",
+      image_url :"https://images.pexels.com/photos/3991396/pexels-photo-3991396.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" ,
+    id_collection : "4"
+  },
+  {
+      title: 'Mushroom',
+      location: "Madrid",
+      artist: "Nacho Vigalondo",
+      description:"this is a test",
+      image_url :"https://images.pexels.com/photos/3991396/pexels-photo-3991396.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" ,
+    id_collection : "5"
+  }
   ];
 
   
