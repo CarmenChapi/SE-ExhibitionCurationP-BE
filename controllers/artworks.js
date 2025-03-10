@@ -56,7 +56,6 @@ exports.getArtworksByCollectionId = (req, res, next) => {
 
 
 exports.postArtwork = (req, res, next) => {
-  console.log("chilling in the controler")
     insertArtwork(req)
       .then((artwork) => {
         if (artwork.code) {

@@ -38,7 +38,7 @@ const selectCollectionsByUser = (req) =>{
 
 const selectCollectionsById= (req) =>{
   const {id_collection} = req.params;
-  console.log(querySelectCollectionsById, id_collection)
+  //console.log(querySelectCollectionsById, id_collection)
   return db.query(querySelectCollectionsById, [id_collection])
   .then(collections => {
 
@@ -74,7 +74,7 @@ const insertCollection = (req) =>{
 const updateCollectionById = (req) => {
   const {id_collection} = req.params;
   const {title} = req.body;
-  console.log(queryUpdateColById, id_collection, title)
+  //console.log(queryUpdateColById, id_collection, title)
 return db
   .query(queryUpdateColById, [title, id_collection])
   .then((collection) => {

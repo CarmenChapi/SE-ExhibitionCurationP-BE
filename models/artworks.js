@@ -22,7 +22,7 @@ const selectAllArtworks = () => {
 
 const selectArtworkById = (req) => {
   const {id_artwork} = req.params;
-    console.log(querySelectArtworkById, id_artwork)
+    //console.log(querySelectArtworkById, id_artwork)
     return db.query(querySelectArtworkById, [id_artwork])
     .then(artwork => {
   
@@ -39,7 +39,7 @@ const selectArtworkById = (req) => {
 
 const selectArtworksByCollectionId = (req) => {
   const {id_collection} = req.params;
-    console.log(querySelectArtworksByCollectionId, id_collection)
+    //console.log(querySelectArtworksByCollectionId, id_collection)
     return db.query(querySelectArtworksByCollectionId, [id_collection])
     .then(artworks => {
   
@@ -58,13 +58,12 @@ const insertArtwork = (req) =>{
        const {title, location, artist, description, image_url} = req.body;
        const {id_collection} = req.params;
 
-       console.log(queryInsertArtwork, title, location, description, image_url, id_collection)
+//console.log(queryInsertArtwork, title, location, description, image_url, id_collection)
        return db
        .query(
            queryInsertArtwork , [title, location, artist, description, image_url, id_collection]
        )
        .then(artwork => {
-         
            return artwork.rows[0];
        })
        .catch(err => {
@@ -77,7 +76,7 @@ const insertArtwork = (req) =>{
 const updateArtworkById  = (req) => {
   const {id_artwork} = req.params;
   const {title, location, artist, description, image_url} = req.body;
-  console.log(queryUpdateArtById, title, location, artist, description, image_url, id_artwork)
+  //console.log(queryUpdateArtById, title, location, artist, description, image_url, id_artwork)
 return db
   .query(queryUpdateArtById,[title, location, artist, description, image_url, id_artwork])
   .then((artwork) => {

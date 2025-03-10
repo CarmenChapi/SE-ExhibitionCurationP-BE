@@ -26,7 +26,9 @@ const seed = ({collectionsData, artworksData}) => {
     description TEXT,
     image_url TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    id_collection INT REFERENCES collections(id_collection) ON DELETE CASCADE
+    id_collection INT NOT NULL,
+    CONSTRAINT fk_collection FOREIGN KEY (id_collection) REFERENCES collections(id_collection)
+    ON DELETE CASCADE
 );`);
     
       return Promise.all([collectionsTablePromise, artworksTablePromise]);
