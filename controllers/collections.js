@@ -15,7 +15,7 @@ exports.getAllCollections = (req, res, next) => {
 exports.getCollectionByUser = (req, res, next) => {
   selectCollectionsByUser(req)
     .then((collections) => {
-      console.log(collections)
+      //console.log(collections)
       if (collections.status===404) {
         return Promise.reject({ status: 404, msg: "Not found" });
       }

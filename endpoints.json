@@ -5,7 +5,7 @@
     },
     "GET /api/collection": {
       "description": "serves an array of all exhibition collections",
-      "queries": [],
+      "exampleRequest": "",
       "exampleResponse": {
         "collections": [ {
             "id_collection": 1,
@@ -24,34 +24,34 @@
 
     "GET /api/collection/id/:id_collection": {
       "description": "return the collection with id = id_collection",
-      "queries": [],
+      "exampleRequest": "",
       "exampleResponse": {
       }
     },
 
     "GET /api/collection/:user_mail": {
         "description": "return the collections with user_mail = user_mail",
-        "queries": [],
+        "exampleRequest": "",
         "exampleResponse": {
         }
       },
 
       "POST /api/collection": {
         "description": "insert a new row in the collection table, return the collection inserted",
-        "queries": [],
+        "exampleRequest": "",
         "exampleResponse": {
         }
       },
 
       "PATCH /api/collection/:id_collection": {
         "description": "update the row with collection = to id_collection and return the collection updated",
-        "queries": [],
+        "exampleRequest": "",
         "exampleResponse": {
         }
       },
       "DELETE /api/collection/:id_collection": {
         "description": "delete the row with collection = to id_collection and return the collection deleted",
-        "queries": [],
+        "exampleRequest": "",
         "exampleResponse": {
         }
       }
