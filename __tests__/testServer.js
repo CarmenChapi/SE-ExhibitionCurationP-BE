@@ -10,7 +10,7 @@ afterAll(() => db.end());
 describe("Project BE-Curator-BE Test Suite", () => {
   describe("Test Collections", () => {
     describe("GET=> return information of collections if the request is correct", () => {
-      test.only("200: GET all collections", () => {
+      test("200: GET all collections", () => {
         return request(app)
           .get("/api/collection")
           .expect(200)
@@ -25,7 +25,7 @@ describe("Project BE-Curator-BE Test Suite", () => {
           });
       });
 
-      test.only("200: GET /api/collection/:user_mail get collections by user mail", () => {
+      test("200: GET /api/collection/:user_mail get collections by user mail", () => {
         return request(app)
           .get("/api/collection/mariachaparro@gmail.com")
           .expect(200)
@@ -60,7 +60,7 @@ describe("Project BE-Curator-BE Test Suite", () => {
           });
       });
 
-      test.only("200: GET /api/collection/id/:id_collection  get a collection by collection_id", () => {
+      test("200: GET /api/collection/id/:id_collection  get a collection by collection_id", () => {
         return request(app)
           .get("/api/collection/id/1")
           .expect(200)
