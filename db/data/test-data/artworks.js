@@ -1,6 +1,6 @@
 module.exports = [
     {
-      title: 'House',
+      title: 'Bottle',
       location: "London",
       artist: "Maria del Mointe",
       description:"this is a test",
