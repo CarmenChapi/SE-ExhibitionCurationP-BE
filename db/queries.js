@@ -41,3 +41,42 @@ exports.queryDeleteCollectionId =
 `DELETE FROM collections
 WHERE id_collection = $1 
  RETURNING *;`;
+
+
+exports.querySelectArtworkById =
+`SELECT *
+FROM artworks
+WHERE id_artwork = $1;`;
+
+exports.querySelectArtworksByCollectionId = 
+`SELECT *
+FROM artworks
+WHERE id_collection = $1
+ORDER BY created_at DESC;`;
+
+
+exports.queryInsertArtwork = 
+`INSERT INTO artworks (
+title, location, artist, description, image_url, id_collection)
+VALUES ($1, $2, $3, $4, $5, (SELECT id_collection
+                                              FROM collections 
+                                              WHERE id_collection = $6)) 
+RETURNING *;`;
+
+exports.queryUpdateArtById = 
+`UPDATE artworks
+SET 
+title = $1,
+location = $2,
+artist = $3,
+description = $4,
+image_url = $5
+WHERE id_artwork = $6
+RETURNING *;`;
+
+exports.queryDeleteArtworkId = 
+`DELETE FROM artworks
+WHERE id_artwork = $1 
+ RETURNING *;`;
+
+

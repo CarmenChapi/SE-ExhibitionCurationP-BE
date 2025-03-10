@@ -4,15 +4,20 @@ const app = express();
 app.use(cors());
 
 const { getEndpoints} = require("./controllers/endpoints")
-const { getAllArtworks, postArtwork} = require("./controllers/artworks")
+const { getAllArtworks, getArtworkById, getArtworksByCollectionId, postArtwork, patchArtwork, deleteArtwork} = require("./controllers/artworks")
 const { getAllCollections, getCollectionByUser, getCollectionById, postCollection, patchCollection, deleteCollection} = require("./controllers/collections")
 
 app.use(express.json());
 
 app.get("/api", getEndpoints);
 
- app.get("/api/artwork", getAllArtworks);
- app.post("/api/artwork", postArtwork);
+ app.get("/api/artwork", getAllArtworks); 
+ app.get("/api/artwork/:id_artwork", getArtworkById);
+ app.get("/api/artwork/collection/:id_collection", getArtworksByCollectionId);
+
+ app.post("/api/artwork/:id_collection", postArtwork);
+ app.patch("/api/artwork/:id_artwork", patchArtwork);
+ app.delete("/api/artwork/:id_artwork", deleteArtwork)
 
  app.get("/api/collection", getAllCollections)
  app.get("/api/collection/:user_mail", getCollectionByUser)
