@@ -1,4 +1,8 @@
 {
+"name": "se-curator-backend",
+  "version": "1.0.0",
+  "description": "RESTful API for managing an artwork collection. It allows users to create, retrieve, update, and delete collections and artworks",
+  "main": "listen.js",
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
