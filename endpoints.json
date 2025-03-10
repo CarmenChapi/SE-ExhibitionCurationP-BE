@@ -54,6 +54,48 @@
         "exampleRequest": "",
         "exampleResponse": {
         }
+      },
+      "GET /api/artwork": {
+        "description": "return an array of all artworks",
+        "exampleRequest": "",
+        "exampleResponse": {
+          "artworks": []
+        }
+      },
+  
+      "GET /api/artwork/:id_artwork": {
+        "description": "return the artwork with id = id_artwork",
+        "exampleRequest": "",
+        "exampleResponse": {
+        }
+      },
+
+      "GET /api/artwork/collecton/:id_collection": {
+        "description": "return an array with all the artworks with id_collection = to the param",
+        "exampleRequest": "",
+        "exampleResponse": {
+        }
+      },
+
+
+      "POST /api/artwork": {
+        "description": "insert a new row in the artworks table, return the row inserted",
+        "exampleRequest": "",
+        "exampleResponse": {
+        }
+      },
+
+      "PATCH /api/artwork/:id_artwork": {
+        "description": "update the row with id_artwork = to id as param and return the row updated",
+        "exampleRequest": "",
+        "exampleResponse": {
+        }
+      },
+      "DELETE /api/artwork/:id_artwork": {
+        "description": "delete the row with id = to id_artwork",
+        "exampleRequest": "",
+        "exampleResponse": {
+        }
       }
     
   }
