@@ -43,7 +43,7 @@ describe("Project BE-Curator-BE Test Suite", () => {
           .get("/api/collection/{!£$%^&*()_-=+}")
           .expect(400)
           .then((data) => {
-           // console.log(data.body);
+            // console.log(data.body);
             expect(data.body.msg).toBe("Bad request");
           });
       });
@@ -57,7 +57,6 @@ describe("Project BE-Curator-BE Test Suite", () => {
             expect(data.body.msg).toBe("Not found");
           });
       });
-
 
       test("200: GET /api/collection/id/:id_collection  get a collection by collection_id", () => {
         return request(app)
@@ -119,7 +118,7 @@ describe("Project BE-Curator-BE Test Suite", () => {
           .send()
           .expect(400)
           .then((data) => {
-           // console.log(data.body);
+            // console.log(data.body);
             expect(data.body.msg).toBe("Bad request");
           });
       });
@@ -260,8 +259,6 @@ describe("Project BE-Curator-BE Test Suite", () => {
           });
       });
 
-      
-
       test("200: GET /api/artwork/collection/:id_collection return array with all the artworks with collection_id = to the param", () => {
         return request(app)
           .get("/api/artwork/collection/1")
@@ -300,7 +297,6 @@ describe("Project BE-Curator-BE Test Suite", () => {
             expect(data.body.msg).toBe("Not found");
           });
       });
-
     });
 
     describe("POST=> add a new row of artwork if the request is correct", () => {
@@ -336,7 +332,7 @@ describe("Project BE-Curator-BE Test Suite", () => {
           .send()
           .expect(400)
           .then((data) => {
-           // console.log(data.body);
+            // console.log(data.body);
             expect(data.body.msg).toBe("Bad request");
           });
       });
@@ -346,7 +342,6 @@ describe("Project BE-Curator-BE Test Suite", () => {
           .post("/api/artwork/2")
           .send({
             title: "Car Museum",
-
           })
           .expect(400)
           .then((data) => {
@@ -390,95 +385,91 @@ describe("Project BE-Curator-BE Test Suite", () => {
             expect(data.body.msg).toBe("Bad request");
           });
       });
-
-    });
-  
-  describe("PATCH=> update row of artworks if the request is correct", () => {
-    test("200: PATCH /api/artwork/:id_artwork  update a artwork by id_artwork", () => {
-      return request(app)
-        .patch("/api/artwork/1")
-        .send({
-          title: "my new art piece",
-          location: "Croydon",
-          artist: "user",
-          description: "hello",
-          image_url: "artist.html",
-        })
-        .expect(200)
-        .then((data) => {
-          //console.log(data.body);
-          expect(data.body.artwork.title).toBe("my new art piece");
-          expect(data.body.artwork.location).toBe("Croydon");
-          expect(data.body.artwork.artist).toBe("user");
-          expect(data.body.artwork.description).toBe("hello");
-          expect(data.body.artwork.image_url).toBe("artist.html");
-        });
     });
 
-    test("400: PATCH /api/artwork/:id_artwork return bad request when the input param is wrong", () => {
-      return request(app)
-        .patch("/api/artwork/1banana33")
-        .send({ title: "my new exhibition" })
-        .expect(400)
-        .then((data) => {
-          //console.log(data.body);
-          expect(data.body.msg).toBe("Bad request");
-        });
+    describe("PATCH=> update row of artworks if the request is correct", () => {
+      test("200: PATCH /api/artwork/:id_artwork  update a artwork by id_artwork", () => {
+        return request(app)
+          .patch("/api/artwork/1")
+          .send({
+            title: "my new art piece",
+            location: "Croydon",
+            artist: "user",
+            description: "hello",
+            image_url: "artist.html",
+          })
+          .expect(200)
+          .then((data) => {
+            //console.log(data.body);
+            expect(data.body.artwork.title).toBe("my new art piece");
+            expect(data.body.artwork.location).toBe("Croydon");
+            expect(data.body.artwork.artist).toBe("user");
+            expect(data.body.artwork.description).toBe("hello");
+            expect(data.body.artwork.image_url).toBe("artist.html");
+          });
+      });
+
+      test("400: PATCH /api/artwork/:id_artwork return bad request when the input param is wrong", () => {
+        return request(app)
+          .patch("/api/artwork/1banana33")
+          .send({ title: "my new exhibition" })
+          .expect(400)
+          .then((data) => {
+            //console.log(data.body);
+            expect(data.body.msg).toBe("Bad request");
+          });
+      });
+
+      test("400: PATCH /api/artwork/:id_artwork return bad request when the data to be updated is empty", () => {
+        return request(app)
+          .patch("/api/artwork/1")
+          .send()
+          .expect(400)
+          .then((data) => {
+            // console.log(data.body);
+            expect(data.body.msg).toBe("Bad request");
+          });
+      });
+
+      test("404: PATCH /api/artwork/:id_artwork return not found when the param input is not in the artworks table", () => {
+        return request(app)
+          .patch("/api/artwork/569")
+          .send({ title: "my new exhibition" })
+          .expect(404)
+          .then((data) => {
+            // console.log(data.body);
+            expect(data.body.msg).toBe("Not found");
+          });
+      });
     });
 
+    describe("DELETE=> remove a row of artworks if the request is correct", () => {
+      test("204: DELETE /api/artwork/:id_artwork delete row of artwork with id_artwork pass as param", () => {
+        return request(app).delete("/api/artwork/4").expect(204);
+      });
 
-    test("400: PATCH /api/artwork/:id_artwork return bad request when the data to be updated is empty", () => {
-      return request(app)
-        .patch("/api/artwork/1")
-        .send()
-        .expect(400)
-        .then((data) => {
-         // console.log(data.body);
-          expect(data.body.msg).toBe("Bad request");
-        });
+      test("400: DELETE /api/artwork/:id_artwork return bad request when the input is not valid", () => {
+        return request(app)
+          .delete("/api/artwork/bamama")
+          .expect(400)
+          .then((data) => {
+            // console.log(data.body);
+            expect(data.body.msg).toBe("Bad request");
+          });
+      });
+
+      test("404: DELETE /api/artwork/:id_artwork return Not found when the input is not in the artwork table", () => {
+        return request(app)
+          .delete("/api/artwork/445")
+          .expect(404)
+          .then((data) => {
+            // console.log(data.body);
+            expect(data.body.msg).toBe("Not found");
+          });
+      });
     });
-
-    test("404: PATCH /api/artwork/:id_artwork return not found when the param input is not in the artworks table", () => {
-      return request(app)
-        .patch("/api/artwork/569")
-        .send({ title: "my new exhibition" })
-        .expect(404)
-        .then((data) => {
-         // console.log(data.body);
-          expect(data.body.msg).toBe("Not found");
-        });
-    });
-
-  });
-
-  describe("DELETE=> remove a row of artworks if the request is correct", () => {
-    test("204: DELETE /api/artwork/:id_artwork delete row of artwork with id_artwork pass as param", () => {
-      return request(app).delete("/api/artwork/4").expect(204);
-    });
-
-    test("400: DELETE /api/artwork/:id_artwork return bad request when the input is not valid", () => {
-      return request(app)
-        .delete("/api/artwork/bamama")
-        .expect(400)
-        .then((data) => {
-         // console.log(data.body);
-          expect(data.body.msg).toBe("Bad request");
-        });
-    });
-
-    test("404: DELETE /api/artwork/:id_artwork return Not found when the input is not in the artwork table", () => {
-      return request(app)
-        .delete("/api/artwork/445")
-        .expect(404)
-        .then((data) => {
-         // console.log(data.body);
-          expect(data.body.msg).toBe("Not found");
-        });
-    });
-
   });
 });
-})
 
 describe("Test endpoints", () => {
   test("200: GET /api all endpoints and descriptions", () => {
@@ -488,8 +479,8 @@ describe("Test endpoints", () => {
       .then((data) => {
         //console.log(data.body);
         expect(typeof data.body.endpoints).toBe("object");
-        expect(Object.keys(data.body.endpoints).length).toBe(7);
-        expect(Object.values(data.body.endpoints).length).toBe(7);
+        expect(Object.keys(data.body.endpoints).length).toBe(13);
+        expect(Object.values(data.body.endpoints).length).toBe(13);
       });
   });
 });
