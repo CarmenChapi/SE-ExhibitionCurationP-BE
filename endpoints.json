@@ -1,11 +1,13 @@
 
 {
     "GET /api": {
-      "description": "serves up a json representation of all the available endpoints of the api"
+      "description": "json file with all the available endpoints of the api",
+      "exampleRequest": "https://se-curator-be.onrender.com/api"
+      
     },
     "GET /api/collection": {
-      "description": "serves an array of all exhibition collections",
-      "exampleRequest": "",
+      "description": "return an array of all exhibition collections",
+      "exampleRequest": "https://se-curator-be.onrender.com/api/collection",
       "exampleResponse": {
         "collections": [ {
             "id_collection": 1,
