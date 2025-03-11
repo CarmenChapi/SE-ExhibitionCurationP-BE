@@ -13,6 +13,9 @@ const pgConfig = {};
 if(ENV === "production"){
   pgConfig.connectionString = process.env.DATABASE_URL
   pgConfig.max = 2
+  pgConfig.ssl= {
+    rejectUnauthorized: false, 
+  }
 }
 const { Pool } = pg;
 
