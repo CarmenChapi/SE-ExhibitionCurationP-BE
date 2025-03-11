@@ -169,31 +169,31 @@ exampleRequest: https://se-curator-be.onrender.com/api
 
 ## how to clone
 
-git clone https://github.com/CarmenChapi/SE-ExhibitionCurationP-BE.git
+    git clone https://github.com/CarmenChapi/SE-ExhibitionCurationP-BE.git
 
 ## install dependencies
 
-npm install
+    npm install
 
 ## enviroment variables
 
 1. Create the following files in the root directory of the project:
 
-.env.development
-.env.test
+    #### .env.development
+    #### .env.test
 
 2. Add the corresponding environment variables to each file:
 
-In .env.development, add PGDATABASE=curator.
-In .env.test, add PGDATABASE=curator_test.
+    #### In .env.development, add PGDATABASE=curator.
+    #### In .env.test, add PGDATABASE=curator_test.
 
 3. To prevent these files from being committed to version control, include the following in your .gitignore file:
-   .env.\*
+   #### .env.\*
 
 ## seed local database
 
-psql -f ./db/setup.sql
-node ./db/seeds/run-seed.js
+    psql -f ./db/setup.sql
+    node ./db/seeds/run-seed.js
 
 ## run test
 
