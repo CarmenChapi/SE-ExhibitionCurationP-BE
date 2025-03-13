@@ -132,7 +132,7 @@ exampleRequest: https://se-curator-be.onrender.com/api
       ]
     }
 
-### GET /api/artwork/collecton/:id_collection => return an array with all the artworks with id_collection = to the param
+### GET /api/artwork/collection/:id_collection => return an array with all the artworks with id_collection = to the param
 
     "exampleRequest": "https://se-curator-be.onrender.com/api/artwork/collection/5",
     "exampleResponse": {
